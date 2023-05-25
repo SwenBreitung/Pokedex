@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script defer src="script.js"></script>
+    <script defer src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+</head>
+
+<body onload=" loadAllPokemon()">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                        <ul class="dropdown-menu">
+                            <li><a onclick="languageGerman()" class="dropdown-item" href="#">Deutsch</a></li>
+                            <li><a onclick="languageEnglish()" class="dropdown-item" href="#">Englisch</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div id="all_pokemon"></div>
+
+
+    <div class="pokeball-container">
+        <div class="pokeball">
+            <div class="pokeball-top"></div>
+            <div class="pokeball-bottom"></div>
+        </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+        <circle cx="50" cy="50" r="30" fill="#ff0000" stroke="#000000" stroke-width="2"/>
+        <path d="M50 18c10 0 20 5 20 12.5S60 50 50 70 30 82.5 30 75 40 68 50 68s20 7 20 14.5S60 82 50 82s-20-5-20-12.5S40 50 50 30c-1-1.3-2.6-2-4-2-4.4 0-8 3.6-8 8s3.6 8 8 8c1.4 0 2.9-0.7 4-2 1.1 1.3 2.6 2 4 2 4.4 0 8-3.6 8-8s-3.6-8-8-8c-1.4 0-2.9 0.7-4 2z" fill="#ffffff"/>
+      </svg>
+
+
+
+</body>
+
+</html>
