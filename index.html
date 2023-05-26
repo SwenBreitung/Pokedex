@@ -13,10 +13,12 @@
     <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 </head>
 
-<body onload=" loadAllPokemon()">
+<body onload="loadFirstTwentyPokemon()">
+
+    <!-- nav Bar -------------------------------------------------->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Pokedex</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,11 +28,11 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a onclick="loadAllPokemon()" class="nav-link" href="#">Lade Alle Pokemon</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                  Translate
                 </a>
                         <ul class="dropdown-menu">
                             <li><a onclick="languageGerman()" class="dropdown-item" href="#">Deutsch</a></li>
@@ -53,6 +55,7 @@
         </div>
     </nav>
 
+    <!-- all Pokemon rendert----------------------------------------------------------->
     <div id="all_pokemon"></div>
 
 
@@ -69,6 +72,8 @@
       </svg>
 
 
+    <!-- butten for next 20 pokemon ----------------------------------------->
+    <button onclick="loadNewTwentyPokemon() ">Next Pokemnon</button>
 
 </body>
 

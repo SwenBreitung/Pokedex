@@ -1,50 +1,57 @@
-let curruntPokemon;
 let allPokemon = document.getElementById('all_pokemon');
-
+let firstPokemon = 1;
+let maxPokemon = 20;
 let language = 5;
-// Derzeitige abfrage von 20 Pokemon, muss durch zahlen ersetzt werden da json nur bis 20 geht
+
+
+// load all 151 Pokemon 
 async function loadAllPokemon() {
 
-    let namefirst = 1;
-    // let url = "https://pokeapi.co/api/v2/pokemon"; 
-    // let response = await fetch(url);
-    // curruntPokemon = await response.json();
-    // curruntPokemon = curruntPokemon['results'];
-    // let pokemonNumber = `https://pokeapi.co/api/v2/pokemon-species//`;
-
-
-    // Abfrage des JSON
-
-    // console.log(pokemonName)
     clearAllPokemon();
-
-    // curruntPokemon.length
     //JSON fängt bei 1 an, nicht bei 0
-    for (let i = 1; i < 20; i++, namefirst++) {
+    for (let i = 1; i < 152; i++) {
 
-        let pokemonNameUrl = `https://pokeapi.co/api/v2/pokemon-species/${namefirst}/`;
-        let responseName = await fetch(pokemonNameUrl);
-        let pokemonName = await responseName.json();
-        pokemonName = pokemonName['names'][language]['name'];
-        console.log(pokemonName)
-
-
-
-        let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
-
-        let response = await fetch(url);
-        url = await response.json();
-        let img = await loadPokemonImg(url);
-        loadPokemonImg();
+        let pokemonName = await loadAPISpecies(i);
+        let img = await loadPokemonImg(i);
         loadPokemonCard(i, img, pokemonName);
 
     }
 }
 
 
-async function loadPokemonImg(url) {
-    return url['sprites']['front_shiny'];
+// load  20 Pokemon with autoload---------------------------------------------
+async function loadFirstTwentyPokemon() {
 
+    //JSON beginning from 1
+    for (let i = firstPokemon; i < maxPokemon; firstPokemon++, i++) {;;
+        let Name = await loadAPISpecies(i);
+        let img = await loadPokemonImg(i);
+        loadPokemonCard(i, img, Name);
+    }
+}
+
+
+// load  20 Pokemon with Button------------------------------------
+function loadNewTwentyPokemon() {
+    maxPokemon += 20;
+    loadFirstTwentyPokemon();
+}
+
+
+async function loadPokemonImg(i) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
+    let response = await fetch(url);
+    url = await response.json();
+    return url['sprites']['front_shiny'];
+}
+
+
+async function loadAPISpecies(i) {
+    let url = `https://pokeapi.co/api/v2/pokemon-species/${i}/`;
+    let response = await fetch(url);
+    let Name = await response.json();
+    Name = Name['names'][language]['name'];
+    return (Name);
 }
 
 
@@ -60,7 +67,6 @@ async function loadPokemonCard(i, img, name) {
             </div>
         </div>
     </div>`;
-
 }
 
 
@@ -71,11 +77,15 @@ function clearAllPokemon() {
 
 function languageEnglish() {
     language = 6;
-    loadAllPokemon();
-
+    firstPokemon = 1;
+    clearAllPokemon();
+    loadFirstTwentyPokemon()
 }
+
 
 function languageGerman() {
     language = 5;
-    loadAllPokemon();
+    firstPokemon = 1;
+    clearAllPokemon();
+    loadFirstTwentyPokemon()
 }
