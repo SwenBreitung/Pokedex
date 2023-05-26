@@ -1,7 +1,7 @@
 let allPokemon = document.getElementById('all_pokemon');
 let firstPokemon = 1;
 let maxPokemon = 20;
-let language = 5;
+
 
 
 // load all 151 Pokemon 
@@ -19,22 +19,21 @@ async function loadAllPokemon() {
 }
 
 
-// load  20 Pokemon with autoload---------------------------------------------
+// load  20 Pokemon with autoload------------------------------------
 async function loadFirstTwentyPokemon() {
 
     //JSON beginning from 1
-    for (let i = firstPokemon; i < maxPokemon; firstPokemon++, i++) {;;
-        let Name = await loadAPISpecies(i);
-        let img = await loadPokemonImg(i);
-        loadPokemonCard(i, img, Name);
+    for (firstPokemon; firstPokemon < maxPokemon; firstPokemon++) {
+        let Name = await loadAPISpecies(firstPokemon);
+        let img = await loadPokemonImg(firstPokemon);
+        loadPokemonCard(firstPokemon, img, Name);
     }
 }
 
 
 // load  20 Pokemon with Button------------------------------------
 function loadNewTwentyPokemon() {
-    maxPokemon += 20;
-    loadFirstTwentyPokemon();
+    loadFirstTwentyPokemon(maxPokemon += 20);
 }
 
 
@@ -50,7 +49,7 @@ async function loadAPISpecies(i) {
     let url = `https://pokeapi.co/api/v2/pokemon-species/${i}/`;
     let response = await fetch(url);
     let Name = await response.json();
-    Name = Name['names'][language]['name'];
+    Name = Name['names'][languageName]['name'];
     return (Name);
 }
 
@@ -59,10 +58,10 @@ async function loadPokemonCard(i, img, name) {
     allPokemon.innerHTML += /*html*/ `
     <div class="pokemon_card" id="pokemon${i}">
         <div class="card" style="width: 18rem;">
-            <img id="pokemon_img" src="${img}" class="card-img-top" alt="...">
+            <img onclick="pokemonCardInfo()" id="pokemon_img" src="${img}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${name}</h5>
-                <p class="card-text"><div><div>Name:</div><div>ID:${i}</div></div>
+                <p class="card-text"><div><div>Name:</div><div>ID: ${i}</div></div>
             <div><div>Typ:</div><div>Attak:</div></div></p>
             </div>
         </div>
@@ -75,17 +74,8 @@ function clearAllPokemon() {
 }
 
 
-function languageEnglish() {
-    language = 6;
-    firstPokemon = 1;
-    clearAllPokemon();
-    loadFirstTwentyPokemon()
-}
 
 
-function languageGerman() {
-    language = 5;
-    firstPokemon = 1;
-    clearAllPokemon();
-    loadFirstTwentyPokemon()
+function pokemonCardInfo() {
+
 }
