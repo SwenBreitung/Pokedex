@@ -3,7 +3,6 @@ let firstPokemon = 1;
 let maxPokemon = 20;
 
 
-
 // load all 151 Pokemon 
 async function loadAllPokemon() {
 
@@ -57,6 +56,7 @@ async function loadAPISpecies(i) {
 async function loadPokemonCard(i, img, name) {
     allPokemon.innerHTML += /*html*/ `
     <div class="pokemon_card" id="pokemon${i}">
+   
         <div class="card" style="width: 18rem;">
             <img onclick="openCardInfo('${img}')" id="pokemon_img" src="${img}" class="card-img-top" alt="bild">
             <div class="card-body">
@@ -73,22 +73,18 @@ function clearAllPokemon() {
     allPokemon.innerHTML = '';
 }
 
-
+// open and close Card info ------------------------------------------------------
 function openCardInfo(img) {
     document.getElementById('card_dashbord_full').classList.remove('d-none');
-    cardInfo = document.getElementById('dashbord_card');
 
-    cardInfo.innerHTML = `  <div class="card" style="width: 18rem;">
-    <img src="${img}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <div>
-            <button></button>
-            <button></button>
-            <button></button>
-        </div>
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-</div>`;
+    cardInfo = document.getElementById('dashbord_card');
+    cardInfo.innerHTML = loadHtmlCardInfo(img);
+}
+
+
+function closeCardInfo() {
+    document.getElementById('card_dashbord_full').classList.add('d-none');
+
+    cardInfo = document.getElementById('dashbord_card');
+    cardInfo.innerHTML = ``;
 }
