@@ -1,90 +1,102 @@
 let allPokemon = document.getElementById('all_pokemon');
 let firstPokemon = 1;
 let maxPokemon = 21;
-let ApiPokemon = [];
+let PokemonApi = ['null'];
+let PokemonSpeciesApi = ['null'];
 
-// load all 151 Pokemon 
-async function loadAllPokemon() {
 
+function clearAllPokemon() {
+    allPokemon.innerHTML = '';
+}
+
+
+// load Pokemon List------------------------------------------------------------------------------
+async function loadAllPokemonList() {
     clearAllPokemon();
-    //JSON fängt bei 1 an, nicht bei 0
-    for (let i = 1; i < 152; i++) {
-        let pokemonName = await loadAPISpecies(i);
-        let img = await loadPokemon(i);
-        let type1
-        loadPokemonCard(i, img, pokemonName);
-    }
+    loadPokemonListLoop(1, 152);
 }
 
 
-// load  20 Pokemon with autoload------------------------------------
-async function loadFirstTwentyPokemon() {
+async function loadFirstTwentyPokemonList() {
+    loadPokemonListLoop(firstPokemon, maxPokemon)
 
-    //JSON beginning from 1
-    for (firstPokemon; firstPokemon < maxPokemon; firstPokemon++) {
-        let Name = await loadAPISpecies(firstPokemon);
-        let img = await loadPokemon(firstPokemon);
-
-        loadPokemonCard(firstPokemon, img, Name);
-    }
 }
 
 
-// load  20 Pokemon with Button------------------------------------
+// load  20 Pokemon with Button
 function loadNewTwentyPokemon() {
-    loadFirstTwentyPokemon(maxPokemon += 20);
+    loadFirstTwentyPokemonList(maxPokemon += 20, firstPokemon += 20);
 }
 
 
-async function loadPokemon(i) {
+// JSON beginning from 1
+async function loadPokemonListLoop(firstNumber, secondNumber) {
+
+    for (i = firstNumber; i < secondNumber; i++) {
+        await loadApis(i);
+        let data = await loadpokemonListCard(i);
+        await loadPokemonCard(i, data[0]['img'], data[0]['pokemonName']);
+    }
+}
+
+
+async function loadpokemonListCard() {
+    let data = [];
+    let pokemonName = await loadPokemonName(i);
+    let img = await loadPokemonImg(i);
+    data[pokemonName, img]
+    data.push({ pokemonName, img });
+    return (data)
+}
+
+// load Pokemon list END==================================================================
+
+
+// load Pokemon Data------------------------------------------------
+async function loadPokemonName(i) {
+    return PokemonSpeciesApi[i]['names'][languageName]['name']
+}
+
+
+async function loadPokemonImg(i) {
+    return PokemonApi[i]['sprites']['front_shiny'];
+}
+
+// load pokemon data end======================================
+
+
+// load Pokemon API´s-------------------------------
+async function loadPokemonApi(i) {
     let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
     let response = await fetch(url);
-    url = await response.json();
-    ApiPokemon.push(url);
-    img = loadPokemonIMG(url);
-    // type = loadPokemonType(url);
-    return (img);
+    urlAsjson = await response.json();
+    PokemonApi.push(urlAsjson);
 }
 
 
-// function loadPokemonType(url) {
-//     let type1 = url['types'][1]['type']['name']
-//     if (url['types'][1]) {
-//         let type2 = url['types'][1]['type']['name']
-//     }
-//     return url['types']
-// }
-
-
-function loadPokemonIMG(url) {
-    return url['sprites']['front_shiny'];
-}
-
-
-async function loadAPISpecies(i) {
+async function loadPokemonSpeciesApi(i) {
     let url = `https://pokeapi.co/api/v2/pokemon-species/${i}/`;
     let response = await fetch(url);
-    let Name = await response.json();
-    Name = Name['names'][languageName]['name'];
-    return (Name);
+    let urlAsjson = await response.json();
+    PokemonSpeciesApi.push(urlAsjson);
 }
 
 
+async function loadApis(i) {
+    await loadPokemonApi(i);
+    await loadPokemonSpeciesApi(i);
+}
+
+// Load Pokemon API´s END=============================================
+
+
+// load cards for the list----------------------------------------------------
 async function loadPokemonCard(i, img, name) {
     i = calcCardId(i);
+
     allPokemon.innerHTML += /*html*/ `
     <div class="pokemon_card card " id="pokemon${i}" style="width: 18rem;">
    
-        <!-- <div class="card" style="width: 18rem;">
-            <img onclick="openCardInfo('${img}')" id="pokemon_img" src="${img}" class="card-img-top" alt="bild">
-            <div class="card-body">
-                <h5 class="card-title">${name}</h5>
-                <p class="card-text"><div><div>Name:</div><div>ID: #${i}</div></div></p>
-            <div>
-                <div>Typ:sadsd</div><div>Attak:</div></div>
-            </div>
-        </div> -->
-
         <div onclick="openCardInfo('${img}')" class="card-main ">
         <div class="card-above">
             <div>${name}</div>
@@ -99,33 +111,13 @@ async function loadPokemonCard(i, img, name) {
             <img  id="pokemon_img" src="${img}" class="card-img-top" alt="bild">
             </div>
         </div>
-    </div>
-
     </div>`;
 }
 
-
-function clearAllPokemon() {
-    allPokemon.innerHTML = '';
-}
-
-// open and close Card info ------------------------------------------------------
-function openCardInfo(img) {
-    document.getElementById('card_dashbord_full').classList.remove('d-none');
-
-    cardInfo = document.getElementById('dashbord_card');
-    cardInfo.innerHTML = loadHtmlCardInfo(img);
-}
+// load cards for the list END==========================================
 
 
-function closeCardInfo() {
-    document.getElementById('card_dashbord_full').classList.add('d-none');
-
-    cardInfo = document.getElementById('dashbord_card');
-    cardInfo.innerHTML = ``;
-}
-
-
+// calc for the card --------------------------------------------------
 // fügt allen zahlen unter 10 eine 0 hinzu
 function calcCardId(i) {
     if (i < 10) {
@@ -135,5 +127,33 @@ function calcCardId(i) {
     } else {
         return (i)
     }
-
 }
+
+// calc for the card END=================================================
+
+
+// load dashbord Card info---------------------------------------------------------------------------
+function openCardInfo(img) {
+    document.getElementById('card_dashbord_full').classList.remove('d-none');
+    cardInfo = document.getElementById('dashbord_card');
+    cardInfo.innerHTML = loadHtmlCardInfo(img);
+}
+
+// load dashbord Card info END==================================================
+
+
+// open and close Card info ------------------------------------------------------
+function openCardInfo(img) {
+    document.getElementById('card_dashbord_full').classList.remove('d-none');
+    cardInfo = document.getElementById('dashbord_card');
+    cardInfo.innerHTML = loadHtmlCardInfo(img);
+}
+
+
+function closeCardInfo() {
+    document.getElementById('card_dashbord_full').classList.add('d-none');
+    cardInfo = document.getElementById('dashbord_card');
+    cardInfo.innerHTML = ``;
+}
+
+// open and close Card info END====================================================

@@ -38,7 +38,7 @@ function loadHeader() {
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a onclick="loadAllPokemon()" class="nav-link" href="#">Lade Alle Pokemon</a>
+                <a onclick="loadAllPokemonList()" class="nav-link" href="#">Lade Alle Pokemon</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
