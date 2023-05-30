@@ -1,14 +1,28 @@
 let head = document.getElementById('header');
+let footer = document.getElementById('footer');
 
 function loadtemplates() {
     head.innerHTML = loadHeader();
+    footer.innerHTML = loadFooter();
 }
 
 
-
-
-
-
+function loadFooter() {
+    return /*html*/ `
+    
+        <div><img src="#" alt="logo"></div>
+    <div>
+        <div>Datenschutz</div>
+        <div>Impressum</div>
+    </div>
+    <div>
+        <img src="#" alt="yt">
+        <img src="#" alt="insta">
+        <img src="#" alt="twitter">
+    </div>
+</div>
+    `;
+}
 
 function loadHeader() {
     return (` 

@@ -1,4 +1,5 @@
 let languageName = 5;
+let languageText = 33;
 
 function languageNameEnglish() {
     languageName = 6;

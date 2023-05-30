@@ -16,10 +16,6 @@ body {
     margin-top: -56px;
 }
 
-#pokemon_img {
-    background-color: rgb(8, 157, 38);
-}
-
 .pokemon_card {
     margin: 8px;
 }
@@ -28,6 +24,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 8px;
     background: rgb(204, 208, 204);
     background: linear-gradient(90deg, rgba(234, 240, 234, 1) 60%, rgba(185, 189, 10, 0.6110644941570378) 94%);
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#eaf0ea", endColorstr="#b9bd0a", GradientType=1);
@@ -46,16 +43,17 @@ body {
 #button_next_pokemon {
     display: flex;
     align-items: center;
+    margin-top: 8px;
+    margin-bottom: 16px;
 }
-
-#pokemon_name {}
 
 .d-none {
     display: none;
 }
 
 .card_dashbord_full {
-    background-color: #b74d57;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: opacity: 0.5; */
     top: 0;
     bottom: 0;
     right: 0;
@@ -64,7 +62,7 @@ body {
 }
 
 .card_dashbord_border {
-    background-color: #5db74d;
+    background-color: #7b7f79;
     top: 5%;
     bottom: 5%;
     right: 5%;
@@ -83,20 +81,271 @@ body {
     border-radius: 16px;
 }
 
+
+/* *,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.center-on-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+
+/* Poké Styles */
+
+
+/* .pokeball {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: #fff;
+    border: 10px solid #000;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: inset -10px 10px 0 10px #ccc;
+    animation: fall .25s ease-in-out, shake 1.25s cubic-bezier(.36, .07, .19, .97) 3;
+}
+
+.pokeball::before,
+.pokeball::after {
+    content: "";
+    position: absolute;
+}
+
+.pokeball::before {
+    background: red;
+    width: 100%;
+    height: 50%;
+}
+
+.pokeball::after {
+    top: calc(50% - 10px);
+    width: 100%;
+    height: 20px;
+    background: #000;
+}
+
+.pokeball__button {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 60px;
+    background: #7f8c8d;
+    border: 10px solid #fff;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 0 10px black;
+    animation: blink .5s alternate 7;
+}
+
+
+/* Animation */
+
+
+/* 
+@keyframes blink {
+    from {
+        background: #eee;
+    }
+    to {
+        background: #e74c3c;
+    }
+}
+
+@keyframes shake {
+    0 {
+        transform: translate(0, 0) rotate(0);
+    }
+    20% {
+        transform: translate(-10px, 0) rotate(-20deg);
+    }
+    30% {
+        transform: translate(10px, 0) rotate(20deg);
+    }
+    50% {
+        transform: translate(-10px, 0) rotate(-10deg);
+    }
+    60% {
+        transform: translate(10px, 0) rotate(10deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0);
+    }
+}
+
+@keyframes fall {
+    0% {
+        top: -200px
+    }
+    60% {
+        top: 0
+    }
+    80% {
+        top: -20px
+    }
+    100% {
+        top: 0
+    }
+}
+
+.box{
+    display:flex;
+    width: 100%;
+    height: 100vh;
+    justify-content:center;
+    align-items:center;
+  }
+  .pokeball{
+      opacity: 0.15;
+      width: 400px;
+      z-index: -1;
+      animation: rotation 20s infinite linear;  
+  }
+  @keyframes rotation {
+      0%{
+          transform: rotate(0deg);
+  
+      }
+      100%{
+          transform: rotate(359deg);
+      }
+  
+  } */
+
+
+/* .box {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokeball {
+    opacity: 0.15;
+    width: 400px;
+    z-index: -1;
+    transform: rotate(150deg);
+}
+
+.card-img {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://pokemon-world-imdoug.netlify.app/img/pokeball.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.card-main {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    border: #333fec;
+}
+
+.card-above {
+    display: flex;
+}
+
+.card-below {
+    display: flex;
+} */
+
+
+/*  @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    } 
+} */
+
+.box {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokeball {
+    opacity: 0.15;
+    width: 400px;
+    z-index: 1;
+    /* Erhöhter z-index, um das Bild über dem Hintergrund zu platzieren */
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card-main {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    border: #050505;
+    background-color: rgb(13, 185, 16);
+}
+
+.card-above {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-below {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    /* Hinzugefügt, um den Hintergrundcontainer zu begrenzen */
+}
+
+.card-below::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://pokemon-world-imdoug.netlify.app/img/pokeball.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.15;
+    z-index: -1;
+    transform: rotate(10deg);
+    /* Hier können Sie den gewünschten Rotationswinkel einstellen */
+}
+
 .grass {
     background-color: #5db74d;
 }
 
 .fire {
-    background-color: #5db74d;
+    background-color: #ed4b4b;
 }
 
 .aqua {
-    background-color: #5db74d;
+    background-color: #333fec;
 }
 
 .psyco {
-    background-color: #5db74d;
+    background-color: #591067;
 }
 
 .grass {
@@ -105,4 +354,10 @@ body {
 
 .grass {
     background-color: #5db74d;
+}
+
+footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
