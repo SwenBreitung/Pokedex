@@ -7,16 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="background.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script defer src="script.js"></script>
     <script defer src="language.js"></script>
     <script defer src="templates.js"></script>
     <script defer src="html.js"></script>
+    <script defer src="backgroundCard.js"></script>
     <script defer src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
-<body onload="loadFirstTwentyPokemonList(),loadtemplates()">
+<body onload="loadFirstTwentyPokemonList(),loadtemplates(),loadTypeOne() ">
 
     <!-- nav Bar -------------------------------------------------->
     <!-- data in templates.js -->
@@ -43,17 +47,17 @@
     </div>
 
     <div class="card-main">
-        <div class="card-above">
+        <!-- <div class="card-above">
             <div>Name</div>
             <div>#01</div>
-        </div>
-        <div class="card-below">
+        </div> -->
+        <!-- <div class="card-below">
             <div class="bg-container"></div>
-            <!-- Hintergrundcontainer hier -->
-            <div class="image-container">
-                <img class="card-img box pokeball" src="" alt="asddsads">
-            </div>
-        </div>
+           
+        <div class="image-container">
+            <img class="card-img box pokeball" src="" alt="asddsads">
+        </div> -->
+    </div>
     </div>
 
 
@@ -75,6 +79,20 @@
     <footer id="footer"></footer>
 
     <div class="box"><img class="pokeball" src="https://pokemon-world-imdoug.netlify.app/img/pokeball.svg" /></div>;
+
+
+    <!-- <main id=app>
+
+        <p>Please checkout the newer version of this; <a href="https://codepen.io/simeydotme/pen/abYWJdX" target="_blank">https://codepen.io/simeydotme/pen/abYWJdX</a></p>
+
+        <h1>Pokemon Card, Holo Effect</h1>
+
+        <section class="cards">
+            <div class="card charizard animated"></div>
+            <div class="card pika animated"></div>
+            <div class="card eevee animated"></div>
+            <div class="card mewtwo animated"></div>
+        </section> -->
 </body>
 
 </html>

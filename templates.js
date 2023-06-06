@@ -25,7 +25,7 @@ function loadFooter() {
 }
 
 function loadHeader() {
-    return (` 
+    return ( /*html*/ ` 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 <div class="container-fluid">
     <a class="navbar-brand" href="#">Pokedex</a>
@@ -45,8 +45,8 @@ function loadHeader() {
           Translate
         </a>
                 <ul class="dropdown-menu">
-                    <li><a onclick="languageNameGerman()" class="dropdown-item" href="#">Deutsch</a></li>
-                    <li><a onclick="languageNameEnglish()" class="dropdown-item" href="#">Englisch</a></li>
+                    <li><a onclick="languageGerman()" class="dropdown-item" href="#">Deutsch</a></li>
+                    <li><a onclick="languageEnglish()" class="dropdown-item" href="#">Englisch</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

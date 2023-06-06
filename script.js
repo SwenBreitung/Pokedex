@@ -1,52 +1,69 @@
 let allPokemon = document.getElementById('all_pokemon');
 let firstPokemon = 1;
 let maxPokemon = 21;
-let PokemonApi = ['null'];
-let PokemonSpeciesApi = ['null'];
+let pokemonApi = [null]; //API starts at 1
+let pokemonSpeciesApi = [null]; //API starts at 1
+let pokemonType = [null]; //API starts at 1
 
+
+
+// clear Pokemon List-------------------------------------------------------------
 
 function clearAllPokemon() {
+    firstPokemon = 1;
+    maxPokemon = 21;
     allPokemon.innerHTML = '';
 }
+
+// clear Pokemon List END===========================================================================
 
 
 // load Pokemon List------------------------------------------------------------------------------
 async function loadAllPokemonList() {
     clearAllPokemon();
-    loadPokemonListLoop(1, 152);
+    resetApiArrays();
+    await loadPokemonListLoop(1, 152);
+    removeButton();
 }
 
 
 async function loadFirstTwentyPokemonList() {
-    loadPokemonListLoop(firstPokemon, maxPokemon)
-
+    await loadPokemonListLoop(firstPokemon, maxPokemon)
+    addButton();
 }
 
 
 // load  20 Pokemon with Button
-function loadNewTwentyPokemon() {
-    loadFirstTwentyPokemonList(maxPokemon += 20, firstPokemon += 20);
+async function loadNewTwentyPokemon() {
+
+    await loadFirstTwentyPokemonList(maxPokemon += 20, firstPokemon += 20);
+
 }
 
 
 // JSON beginning from 1
 async function loadPokemonListLoop(firstNumber, secondNumber) {
 
-    for (i = firstNumber; i < secondNumber; i++) {
+    for (i = firstNumber; i < secondNumber && i < 152; i++) {
         await loadApis(i);
-        let data = await loadpokemonListCard(i);
-        await loadPokemonCard(i, data[0]['img'], data[0]['pokemonName']);
+        let pokemonData = await loadpokemonListCard(i);
+        await loadPokemonCard(i, pokemonData[0]['img'], pokemonData[0]['pokemonName'], pokemonData[0]['typeOne']);
+
+        if (i == 151) {
+            document.getElementById(`button_next_pokemon`).classList.add("d-none");
+        }
     }
+
 }
 
 
-async function loadpokemonListCard() {
-    let data = [];
+async function loadpokemonListCard(i) {
+    let pokemonData = [];
     let pokemonName = await loadPokemonName(i);
     let img = await loadPokemonImg(i);
-    data[pokemonName, img]
-    data.push({ pokemonName, img });
-    return (data)
+    let typeOne = await loadPokemonTypeOne(i);
+    pokemonData.push({ pokemonName, img, typeOne });
+    return (pokemonData)
 }
 
 // load Pokemon list END==================================================================
@@ -54,82 +71,90 @@ async function loadpokemonListCard() {
 
 // load Pokemon Data------------------------------------------------
 async function loadPokemonName(i) {
-    return PokemonSpeciesApi[i]['names'][languageName]['name']
+    languageText = pokemonSpeciesApi[i]['names'];
+    pokemonNameAsJson = findLanguageText(languageText)
+    return pokemonNameAsJson['name'];
 }
 
 
 async function loadPokemonImg(i) {
-    return PokemonApi[i]['sprites']['front_shiny'];
+    return pokemonApi[i]['sprites']['other']['official-artwork']['front_shiny'];
+}
+
+
+async function loadPokemonTypeOne(i) {
+    languageText = pokemonType[i]['names'];
+    pokemonTypeAsJson = findLanguageText(languageText)
+    return pokemonTypeAsJson['name'];
+    // return pokemonType[i]['names'][languageName - 1]['name'];
 }
 
 // load pokemon data end======================================
 
 
-// load Pokemon API´s-------------------------------
+// load and reset PokemonPokemon API´s-------------------------------
 async function loadPokemonApi(i) {
     let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
-    let response = await fetch(url);
-    urlAsjson = await response.json();
-    PokemonApi.push(urlAsjson);
+    let urlAsjson = await (await fetch(url)).json();
+    pokemonApi.push(urlAsjson);
 }
 
 
 async function loadPokemonSpeciesApi(i) {
     let url = `https://pokeapi.co/api/v2/pokemon-species/${i}/`;
-    let response = await fetch(url);
-    let urlAsjson = await response.json();
-    PokemonSpeciesApi.push(urlAsjson);
+    let urlAsjson = await (await fetch(url)).json();
+    pokemonSpeciesApi.push(urlAsjson);
+}
+
+async function loadTypeApi(i) {
+    let url = await pokemonApi[i]['types'][0]['type']['url'];
+    let urlAsjson = await (await fetch(url)).json();
+    pokemonType.push(urlAsjson);
 }
 
 
 async function loadApis(i) {
     await loadPokemonApi(i);
     await loadPokemonSpeciesApi(i);
+    await loadTypeApi(i)
 }
 
-// Load Pokemon API´s END=============================================
+
+// reset Pokemon API´s
+function resetApiArrays() {
+    pokemonApi.splice(1, pokemonApi.length);
+    pokemonSpeciesApi.splice(1, pokemonSpeciesApi.length);
+    pokemonType.splice(1, pokemonType.length);
+}
+
+// Load and reset Pokemon API´s END=============================================
 
 
-// load cards for the list----------------------------------------------------
-async function loadPokemonCard(i, img, name) {
-    i = calcCardId(i);
-
-    allPokemon.innerHTML += /*html*/ `
-    <div class="pokemon_card card " id="pokemon${i}" style="width: 18rem;">
-   
-        <div onclick="openCardInfo('${img}')" class="card-main ">
-        <div class="card-above">
-            <div>${name}</div>
-            <div>ID: #${i}</div>
-        </div>
-        <div class="card-below">
-        <div>sadasd</div>
-            <div class="bg-container"></div>
-            
-            <div class="image-container">
-                
-            <img  id="pokemon_img" src="${img}" class="card-img-top" alt="bild">
-            </div>
-        </div>
-    </div>`;
+// load cards for the list--------------------------------------------
+async function loadPokemonCard(i, img, name, typeOne) {
+    // let pokemonId = i;
+    let pokemonId = calcCardId(i);
+    allPokemon.innerHTML += /*html*/ loadCardHtml(i, img, name, typeOne, pokemonId);
+    loadBackgroundcolor(i);
+    container = document.getElementById(`pokemon${i}`);
 }
 
 // load cards for the list END==========================================
 
 
-// calc for the card --------------------------------------------------
-// fügt allen zahlen unter 10 eine 0 hinzu
-function calcCardId(i) {
-    if (i < 10) {
-        return (i = '00' + i);
-    } else if (i > 10 && i < 99) {
-        return (i = '0' + i);
+// calc for the card ID --------------------------------------------------
+// adds two 0 to all numbers under 10
+function calcCardId(pokemonId) {
+    if (pokemonId < 10) {
+        return (pokemonId = '00' + pokemonId);
+    } else if (pokemonId > 10 && pokemonId < 99) {
+        return (pokemonId = '0' + pokemonId);
     } else {
-        return (i)
+        return (pokemonId)
     }
 }
 
-// calc for the card END=================================================
+// calc for the card ID END=================================================
 
 
 // load dashbord Card info---------------------------------------------------------------------------
@@ -157,3 +182,16 @@ function closeCardInfo() {
 }
 
 // open and close Card info END====================================================
+
+// remove and add the button--------------------------------------------------------
+
+function removeButton() {
+    document.getElementById(`button_next_pokemon`).classList.add("d-none");
+}
+
+
+function addButton() {
+    document.getElementById(`button_next_pokemon`).classList.remove("d-none");
+}
+
+// remove and add the button END==========================================================
