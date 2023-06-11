@@ -1,95 +1,76 @@
   /* background Color  --------------------------------------------------*/
-  /* Normal */
   
   .normal {
       background-color: #A8A878 !important;
   }
-  /* Fighting */
   
   .fighting {
       background-color: #C03028 !important;
   }
-  /* Flying */
   
   .flying {
       background-color: #A890F0 !important;
   }
-  /* Ground */
   
   .ground {
       background-color: #E0C068 !important;
   }
-  /* Rock */
   
   .rock {
       background-color: #B8A038 !important;
   }
-  /* Bug */
   
   .bug {
       background-color: #A8B820 !important;
   }
-  /* Ghost */
   
   .ghost {
       background-color: #705898 !important;
   }
-  /* Steel */
   
   .steel {
       background-color: #B8B8D0 !important;
   }
-  /* Fire */
   
   .fire {
       background-color: #F08030 !important;
   }
-  /* Water */
   
   .water {
       background-color: #6890F0 !important;
   }
-  /* Grass */
   
   .grass {
       background-color: #78C850 !important;
   }
-  /* Electric */
   
   .electric {
       background-color: #F8D030 !important;
   }
-  /* Psychic */
   
   .psychic {
       background-color: #F85888 !important;
   }
-  /* Ice */
   
   .ice {
       background-color: #98D8D8 !important;
   }
-  /* Dragon */
   
   .dragon {
       background-color: #7038F8 !important;
   }
-  /* Dark */
   
   .dark {
       background-color: #705848 !important;
   }
-  /* Fairy */
   
   .fairy {
       background-color: #EE99AC !important;
   }
-  /* Shadow */
   
   .shadow {
       background-color: #605070 !important;
   }
-  /* Unknown */
   
   .unknown {
       background-color: #68A090 !important;
@@ -112,9 +93,7 @@
   
   .cardList {
       width: 71.5vw;
-      /* height: 100vw; */
       width: clamp(200px, 61vh, 18vw);
-      /* height: clamp(280px, 85vh, 25.2vw); */
       @media screen and (min-width: 600px) {
           width: 61vh;
           max-width: 500px;
@@ -462,27 +441,6 @@
               animation-delay: 0.75s;
           }
       }
-  }
-  /* p {
-    font-weight: 400;
-    font-size: 18px;
-    padding: 1em;
-    background: rgba(0, 0, 0, 0.3);
-    margin-top: 0;
-    animation: rubberBand 1.5s linear 3s 1;
-} */
-  
-  .promo {
-      margin-top: 50px;
-  }
-  
-  .promo img {
-      margin-top: 10px;
-      max-width: 80%;
-  }
-  
-  p a {
-      color: cyan;
   }
   
   html,

@@ -53,7 +53,6 @@ body {
 
 .card_dashbord_full {
     background-color: rgba(0, 0, 0, 0.5);
-    /* background-color: opacity: 0.5; */
     top: 0;
     bottom: 0;
     right: 0;
@@ -108,7 +107,6 @@ body {
     flex-direction: column;
     border-radius: 8px;
     border: #050505;
-    /* background-color: rgb(13, 185, 16); */
 }
 
 .card-above {
@@ -124,26 +122,6 @@ body {
     overflow: hidden;
 }
 
-
-/* .card-below::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('https://pokemon-world-imdoug.netlify.app/img/pokeball.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.15;
-    z-index: -1;
-    transform: rotate(10deg);
-    /* Hier können Sie den gewünschten Rotationswinkel einstellen */
-
-
-/* }  */
-
 footer {
     display: flex;
     width: 100%;
@@ -157,7 +135,19 @@ footer {
     height: 120px;
 }
 
+.card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .card-info img {
     height: 20%;
     width: 60% !important;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

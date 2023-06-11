@@ -30,14 +30,13 @@ async function loadAllPokemonList() {
 async function loadFirstTwentyPokemonList() {
     await loadPokemonListLoop(firstPokemon, maxPokemon)
     addButton();
+
 }
 
 
 // load  20 Pokemon with Button
 async function loadNewTwentyPokemon() {
-
     await loadFirstTwentyPokemonList(maxPokemon += 20, firstPokemon += 20);
-
 }
 
 
@@ -86,8 +85,21 @@ async function loadPokemonTypeOne(i) {
     languageText = pokemonType[i]['names'];
     pokemonTypeAsJson = findLanguageText(languageText)
     return pokemonTypeAsJson['name'];
-    // return pokemonType[i]['names'][languageName - 1]['name'];
 }
+
+function loadPokemonText(i) {
+    languageText = pokemonSpeciesApi[i]['flavor_text_entries'];
+    pokemonTextAsJson = findLanguageText(languageText)
+    return pokemonTextAsJson['flavor_text'];
+}
+
+
+function loadPokemonStats(i) {
+    languageText = pokemonSpeciesApi[i]['flavor_text_entries'];
+    pokemonTextAsJson = findLanguageText(languageText)
+    return pokemonTextAsJson['flavor_text'];
+}
+
 
 // load pokemon data end======================================
 
@@ -132,7 +144,6 @@ function resetApiArrays() {
 
 // load cards for the list--------------------------------------------
 async function loadPokemonCard(i, img, name, typeOne) {
-    // let pokemonId = i;
     let pokemonId = calcCardId(i);
     allPokemon.innerHTML += /*html*/ loadCardHtml(i, img, name, typeOne, pokemonId);
     loadBackgroundcolor(i);
@@ -158,20 +169,26 @@ function calcCardId(pokemonId) {
 
 
 // load dashbord Card info---------------------------------------------------------------------------
-function openCardInfo(img) {
-    document.getElementById('card_dashbord_full').classList.remove('d-none');
-    cardInfo = document.getElementById('dashbord_card');
-    cardInfo.innerHTML = loadHtmlCardInfo(img);
-}
+// function openCardInfo(img, i) {
+//     document.getElementById('card_dashbord_full').classList.remove('d-none');
+//     cardInfo = document.getElementById('dashbord_card');
+//     cardInfo.innerHTML = loadHtmlCardInfo(img, i);
+// }
 
+function loadStats(i) {
+    let text = loadStats(i);
+    let textArea = document.getElementById('text-Info-area');
+    textArea.innerHTML += $[text];
+}
 // load dashbord Card info END==================================================
 
 
 // open and close Card info ------------------------------------------------------
-function openCardInfo(img) {
+function openCardInfo(img, i, typeOne, name, pokemonId) {
+    let pokemonText = loadPokemonText(i);
     document.getElementById('card_dashbord_full').classList.remove('d-none');
     cardInfo = document.getElementById('dashbord_card');
-    cardInfo.innerHTML = loadHtmlCardInfo(img);
+    cardInfo.innerHTML = loadHtmlCardInfo(img, i, typeOne, name, pokemonId, pokemonText);
 }
 
 
