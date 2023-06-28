@@ -1,5 +1,11 @@
 body {
     margin: 0;
+    overflow: hidden;
+    font-family: 'Wendy One', sans-serif !important;
+}
+
+#header {
+    width: 100vw;
 }
 
 #pokemon_card {
@@ -28,6 +34,9 @@ body {
     background: rgb(204, 208, 204);
     background: linear-gradient(90deg, rgba(234, 240, 234, 1) 60%, rgba(185, 189, 10, 0.6110644941570378) 94%);
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#eaf0ea", endColorstr="#b9bd0a", GradientType=1);
+    overflow-y: scroll;
+    max-height: 100vh;
+    overflow-x: hidden;
 }
 
 #all_pokemon {
@@ -45,40 +54,50 @@ body {
     align-items: center;
     margin-top: 8px;
     margin-bottom: 16px;
+    flex-direction: column;
 }
 
 .d-none {
     display: none;
 }
 
+.dialog-full {
+    background-color: rgba(0, 0, 0, 0.761);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 997;
+}
+
 .card_dashbord_full {
-    background-color: rgba(0, 0, 0, 0.5);
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    position: absolute;
+    background-color: rgba(101, 92, 58, 0.9);
+    z-index: 997;
+    display: flex;
+    height: 100%;
+    width: 100%;
 }
 
 .card_dashbord_border {
-    background-color: #7b7f79;
-    top: 5%;
-    bottom: 5%;
-    right: 5%;
-    left: 5%;
-    position: absolute;
-    border-radius: 16px;
+    height: 90%;
+    width: 90%;
     display: flex;
-    justify-content: center;
+    margin: 5%;
     align-items: center;
+    justify-content: center;
     z-index: 999;
+    background-color: #7b7f79;
+    max-width: 1000px;
+    border-radius: 16px;
 }
 
 .card_dashbord_card {
-    background-color: aliceblue;
-    height: 70%;
-    width: 50%;
     border-radius: 16px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
 }
 
 .box {
@@ -93,7 +112,6 @@ body {
     opacity: 0.15;
     width: 400px;
     z-index: 1;
-    /* Erhöhter z-index, um das Bild über dem Hintergrund zu platzieren */
 }
 
 .card-img {
@@ -126,6 +144,7 @@ footer {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    padding: 5px;
 }
 
 .card-img,
@@ -135,19 +154,331 @@ footer {
     height: 120px;
 }
 
-.card-info {
+.info-card {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 30px;
+    margin: 0 !important;
+    z-index: 999;
+    max-width: 500px;
 }
 
-.card-info img {
+.info-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50vw;
+    padding: 10px;
+    max-width: 500px;
+}
+
+.info-card-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 50vw;
+    padding-right: 10px;
+    padding-left: 10px;
+    max-width: 500px;
+}
+
+.info-card img {
     height: 20%;
-    width: 60% !important;
+    height: 30vw !important;
+    max-width: 300px;
+    max-height: 290px;
+    background-image: url('https://pokemon-world-imdoug.netlify.app/img/pokeball.svg')
+}
+
+#text-Info-area {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 5%;
+    overflow: auto;
+    max-height: 24vh;
+}
+
+#text-Info-area::-webkit-scrollbar {
+    width: 8px;
+}
+
+#text-Info-area::-webkit-scrollbar-thumb {
+    background-color: red;
+    border-radius: 4px;
+}
+
+#text-Info-area::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+#text-Info-area::-webkit-scrollbar-track {
+    background-color: lightgray;
 }
 
 .card-body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.background-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://pokemon-world-imdoug.netlify.app/img/pokeball.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transform: rotate(320deg);
+    z-index: -1;
+}
+
+.card-img-top {
+    display: block;
+    margin: 0 auto;
+}
+
+.button-card-info {
+    padding: 5px;
+    border-radius: 17px;
+    background-color: #3ddf46;
+}
+
+.info-card {
+    min-height: 206px;
+    background-color: brown;
+    width: 50vw !important;
+}
+
+.info-card-text {
+    background-color: antiquewhite;
+    border-radius: 8px;
+    margin-top: -20px;
+    height: 37vh;
+    width: 50vw !important;
+    z-index: 999;
+    max-width: 500px;
+    padding-bottom: 16px;
+}
+
+.info-card-text a {
+    color: #050505;
+    text-decoration: none;
+}
+
+.move {
+    padding: 5px;
+    background-color: #7b7f79;
+    border-radius: 25px;
+    color: #3ddf46;
+    margin: 5px;
+}
+
+li img {
+    height: 25px;
+    padding: 5px;
+}
+
+.img-france {
+    height: 22px !important;
+}
+
+.img-german {
+    height: 33px;
+}
+
+.img-english {
+    height: 22px;
+}
+
+.btn-close {
+    padding: 8px;
+}
+
+#start {
+    margin-top: 20px;
+    line-height: 60px;
+    font-weight: bold;
+    font-size: large;
+    color: black;
+    padding: 0 40px;
+    background: lightblue;
+    border: 3px solid #003060;
+    border-radius: 40px;
+    box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
+}
+
+#start:hover {
+    background: #003060;
+    color: white;
+    position: relative;
+    top: 10px;
+    box-shadow: none;
+}
+
+#logo {
+    height: 150px;
+}
+
+span {
+    font-family: 'Wendy One', sans-serif;
+    font-size: 50px;
+    color: #ffcc00;
+    text-shadow: 3px 3px 0 navy, -1px -1px 0 navy, 1px -1px 0 navy, -1px 1px 0 navy, 1px 1px 0 navy;
+}
+
+.attackbuttons {
+    margin: 20px 5px 0 5px;
+    line-height: 40px;
+    font-size: 20px;
+    color: black;
+    padding: 0 20px;
+    background: lightblue;
+    border: 3px solid #003060;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
+}
+
+.attackbuttons:hover {
+    background: #003060;
+    color: white;
+    position: relative;
+    top: 10px;
+    box-shadow: none;
+}
+
+.main_container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main_container::-webkit-scrollbar-thumb {
+    background-color: #b74d57;
+    border-radius: 4px;
+}
+
+.main_container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.main_container::-webkit-scrollbar-track {
+    background-color: lightgray;
+}
+
+#radial-menu {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 5%;
+    overflow: auto;
+    max-height: 24vh;
+    margin: 0;
+}
+
+
+/* 
+loading animation-------------------------- */
+
+.navbar-toggler-icon {
+    width: 0.5em !important;
+    height: 0.5em !important;
+}
+
+#loading-screen {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.pokemon {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    background: linear-gradient(to bottom, rgb(254, 0, 1) 50%, white 50%);
+    border-radius: 50%;
+    border: 8px solid black;
+    animation: spin 1s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pokemon::before {
+    content: '';
+    position: absolute;
+    height: 8px;
+    width: 100px;
+    background: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pokemon::after {
+    content: '';
+    position: absolute;
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    background: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0 0 0 8px black, inset 0 0 0 10px white, inset 0 0 0 12px black;
+}
+
+
+/* Spin Animation */
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* 
+  loading animation END================================================= */
+
+@media (min-width: 1000px) {
+    .card_dashbord_full {
+        height: 100%;
+        max-width: 1000px;
+        display: flex;
+    }
+}
+
+@media (min-width: 800px) {
+    .card_dashbord_card {
+        width: 380px;
+        border-radius: 16px;
+    }
+    .card_dashbord_full {
+        border-radius: 16px;
+    }
+}
+
+@media(max-width: 800px) {
+    .info-card-top span {
+        font-size: 20px !important;
+    }
 }

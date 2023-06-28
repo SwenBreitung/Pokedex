@@ -1,8 +1,20 @@
 let languageCode = 'de';
 
+// language search------------------------------------------------------------
+
+function findLanguageText(languageText) {
+    let germanyEntry = languageText.find(e => e.language.name == languageCode);
+    return germanyEntry;
+}
+
+// language search END===================================================
+
+
+// languageCode-----------------------------------------------------
+
 function languageEnglish() {
     languageCode = 'en';
-    clearAllPokemon();
+    clearAllPokemonData();
     resetApiArrays();
     loadFirstTwentyPokemonList()
 }
@@ -10,25 +22,52 @@ function languageEnglish() {
 
 function languageGerman() {
     languageCode = 'de';
-    clearAllPokemon();
+    clearAllPokemonData();
     resetApiArrays();
     loadFirstTwentyPokemonList()
 }
 
 
-async function loadTypeOne() {
-    let url = `https://pokeapi.co/api/v2/type/12/`;
-    let urlAsjson = await (await fetch(url)).json();
-    pokemonType.push(urlAsjson);
-    let languageText = findLanguageText(pokemonType[1].names, languageCode);
-    console.log(languageText);
+function languageFrance() {
+    languageCode = 'fr';
+    clearAllPokemonData();
+    resetApiArrays();
+    loadFirstTwentyPokemonList()
 }
 
 
-function findLanguageText(languageText) {
-    let germanyEntry = languageText.find(e => e.language.name == languageCode);
-    return germanyEntry;
+function languageJapanese() {
+    languageCode = 'ja-Hrkt';
+    clearAllPokemonData();
+    resetApiArrays();
+    loadFirstTwentyPokemonList()
 }
+
+
+function languageKorean() {
+    languageCode = 'ko';
+    clearAllPokemonData();
+    resetApiArrays();
+    loadFirstTwentyPokemonList()
+}
+
+
+function languageChina() {
+    languageCode = 'zh-Hant';
+    clearAllPokemonData();
+    resetApiArrays();
+    loadFirstTwentyPokemonList()
+}
+
+
+function languageSpanish() {
+    languageCode = 'es';
+    clearAllPokemonData();
+    resetApiArrays();
+    loadFirstTwentyPokemonList()
+}
+
+// languageCode END======================================================
 
 
 // ============================================

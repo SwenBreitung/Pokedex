@@ -147,3 +147,54 @@ function loadBackgroundcolor(i) {
 }
 
 //background Color for Types END=============================================
+
+
+//background color for card info-------------------------------------
+
+function bakcgroundColorInfoCard(i) {
+    let type = pokemonApi[i]['types'][0]['type']['name'];
+
+    if (type == "normal") {
+        document.getElementById('info-card').classList.add("normal");
+    } else if (type == "fighting") {
+        document.getElementById('info-card').classList.add("fighting");
+    } else if (type == "flying") {
+        document.getElementById('info-card').classList.add("flying");
+    } else if (type == "ground") {
+        document.getElementById('info-card').classList.add("ground");
+    } else if (type == "rock") {
+        document.getElementById('info-card').classList.add("rock");
+    } else if (type == "bug") {
+        document.getElementById('info-card').classList.add("bug");
+    } else if (type == "ghost") {
+        document.getElementById('info-card').classList.add("ghost");
+    } else if (type == "steel") {
+        document.getElementById('info-card').classList.add("steel");
+    } else if (type == "fire") {
+        document.getElementById('info-card').classList.add("fire");
+    } else if (type == "water") {
+        document.getElementById('info-card').classList.add("water");
+    } else if (type == "grass") {
+        document.getElementById('info-card').classList.add("grass");
+    } else if (type == "electric") {
+        document.getElementById('info-card').classList.add("electric");
+    } else if (type == "psychic") {
+        document.getElementById('info-card').classList.add("psychic");
+    } else if (type == "ice") {
+        document.getElementById('info-card').classList.add("ice");
+    } else if (type == "dragon") {
+        document.getElementById('info-card').classList.add("dragon");
+    } else if (type == "dark") {
+        document.getElementById('info-card').classList.add("dark");
+    } else if (type == "fairy") {
+        document.getElementById('info-card').classList.add("fairy");
+    } else if (type == "shadow") {
+        document.getElementById('info-card').classList.add("shadow");
+    } else if (type == "unknown") {
+        document.getElementById('info-card').classList.add("unknown");
+    } else if (type == "poison") {
+        document.getElementById('info-card').classList.add("poison");
+    } else {
+        console.log(`Bei Pokemon ID${i} gibt es einen Fehler mit type ${type}`);
+    }
+}
